@@ -13,10 +13,24 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('fullname');
+            // client can change the phone number, when before requesting for employee so we can add it as a nullable field for now
+            $table->string('phone_number')->unique()->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            
+            $table->enum('role', ['professor', 'employee' , 'student'])->default('student');
+            
+            // mabye client can request for this feature, so we can add it as a nullable field for now
+            $table->string("identification_code")->unique()->nullable();
+            
+            // client can change the profile picture , when before requesting for this feature, so we can add it as a nullable field for now
+            $table->string("profile_picture")->nullable();
+            
+            // show status of the user, if the user is active or inactive, default is active
+            $table->enum("status",['active','inactive'])->default('active');
+
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
