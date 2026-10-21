@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "mikhak";
+    src: url("fonts/mikhak.woff2") format("woff2"),
+         url("fonts/mikhak.woff") format("woff"),
+         url("fonts/mikhak.ttf") format("truetype")
+         url("fonts/mikhak.eot") format("embedded-opentype");
+}
+
+:root {
+    --font-family-sans-serif: "mikhak", sans-serif !important;
+}
