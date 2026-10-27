@@ -11,13 +11,13 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::middleware(['auth', 'role:professor, employee'])->prefix('employee')->group(function(){
+Route::middleware(['auth', 'check-role-users:professor, employee'])->prefix('employee')->group(function(){
 
     Route::get('/', [OwnerController::class, 'index'])->name('ownder.index');
 
 });
 
-Route::middleware(['auth', 'role:student'])->prefix('student')->group(function(){
+Route::middleware(['auth', 'check-role-users:student'])->prefix('student')->group(function(){
 
     Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index'])->name('client.index');
 
