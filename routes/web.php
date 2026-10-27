@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Owner\OwnerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Gregwar\Captcha\CaptchaBuilder;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,18 +10,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/captcha', function () {
-    
-    $builder = new CaptchaBuilder();
-    $builder->setPhraseBuilder(new Gregwar\Captcha\PhraseBuilder(5, '0123456789'));
-    $builder->build();
 
-    
-    session(['captcha_phrase' => $builder->getPhrase()]);
+Route::middleware(['auth', 'role:professor, employee'])->prefix('employee')->group(function(){
 
-    
-    header('Content-Type: image/jpeg');
-    $builder->output();
-})->name('captcha');
+    Route::get('/', [OwnerController::class, 'index'])->name('ownder.index');
+
+});
+
+Route::middleware(['auth', 'role:student'])->prefix('student')->group(function(){
+
+    Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index'])->name('client.index');
+
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

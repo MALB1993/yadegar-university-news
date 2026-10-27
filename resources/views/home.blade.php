@@ -31,15 +31,18 @@
                         @case('professor')
                             <p>شما به عنوان <b class="font-weight-bold text-success">استاد</b> وارد سامانه دانایار شده‌اید.</p>
                             <p>می‌توانید به بخش‌های مربوط به مدیریت کلاس‌ها و دانشجویان دسترسی داشته باشید.</p>
+                            <a href="{{ route('owner.index') }}" class="btn btn-success">ورود به بخش مدیریت اساتید و کارمندان</a>
                             @break
                         @case('employee')
                             <p>شما به عنوان <b class="font-weight-bold text-info">کارمند</b> وارد سامانه دانایار شده‌اید.</p>
                             <p>می‌توانید به بخش‌های مربوط به مدیریت دانشجویان و اساتید دسترسی داشته باشید.</p>
+                            <a href="{{ route('owner.index') }}" class="btn btn-info">ورود به بخش مدیریت اساتید و کارمندان</a>
                             @break
                         @case('student')
                             <p>شما به عنوان <b class="font-weight-bold text-primary">دانشجو</b> وارد سامانه دانایار شده‌اید.</p>
                             <p>می‌توانید به بخش‌های مربوط به مشاهده نمرات و ثبت‌نام در کلاس‌ها دسترسی داشته باشید.</p>
                             <p>ویرایش جزوات و مشاهده جزوات و اخبارهای مربوط به کلاس را در این بخش داشته باشید.</p>
+                            <a href="{{ route('client.index') }}" class="btn btn-primary">ورود به بخش دانشجویان</a>
                             @break
                         @default
                             
