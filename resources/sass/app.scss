@@ -1,8 +1,8 @@
 // Fonts
 @import 'fonts';
 
-// Variables
-@import 'variables';
+// Bootstrap (precompiled RTL build, the site is Persian)
+@import 'bootstrap/dist/css/bootstrap.rtl';
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+// Application theme (after Bootstrap so it can override its variables)
+@import 'theme';

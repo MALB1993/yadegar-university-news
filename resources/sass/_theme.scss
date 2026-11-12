@@ -1,0 +1,10 @@
+// Application theme.
+// Bootstrap's precompiled RTL build is used, so the look is customised through
+// its CSS variables instead of Sass variables.
+:root {
+    --bs-font-sans-serif: 'mikhak', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 0.9rem;
+    --bs-body-line-height: 1.6;
+    --bs-body-bg: #f8fafc;
+}
