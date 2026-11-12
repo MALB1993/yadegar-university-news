@@ -26,6 +26,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('news.index') }}">اخبار</a>
+                            </li>
+                            @can('create', App\Models\Post::class)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('news.create') }}">ثبت خبر</a>
+                                </li>
+                            @endcan
+                            @can('viewAny', App\Models\Category::class)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('categories.index') }}">دسته‌بندی‌ها</a>
+                                </li>
+                            @endcan
+                        @endauth
 
                     </ul>
 
@@ -69,8 +84,23 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @if (session('status'))
+                    <div class="alert alert-success">{{ session('status') }}</div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+            </div>
+
             @yield('content')
         </main>
+
+        <footer class="border-top bg-white py-3">
+            <div class="container text-center text-muted small">
+                دانایار · دانشگاه یادگار امام خمینی (ره) شهرری
+            </div>
+        </footer>
     </div>
 </body>
 </html>
