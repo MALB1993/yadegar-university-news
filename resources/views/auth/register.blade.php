@@ -25,6 +25,20 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="identification_code" class="col-md-4 col-form-label text-md-end">شماره دانشجویی/پرسنلی</label>
+
+                            <div class="col-md-6">
+                                <input id="identification_code" type="text" class="form-control @error('identification_code') is-invalid @enderror" name="identification_code" value="{{ old('identification_code') }}" required autocomplete="username" placeholder="شماره دانشجویی یا پرسنلی خود را وارد کنید" dir="ltr">
+
+                                @error('identification_code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">پست الکترونیکی</label>
 
                             <div class="col-md-6">

@@ -15,8 +15,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        if (! in_array($request->user()->role, $roles, true)) 
-        {
+        $allowedRoles = array_map('trim', $roles);
+
+        if (! in_array($request->user()?->role, $allowedRoles, true)) {
             abort(403);
         }
 

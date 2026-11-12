@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Owner\OwnerController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,18 +12,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-Route::middleware(['auth', 'check-role-users:professor, employee'])->prefix('employee')->group(function(){
-
-    Route::get('/', [OwnerController::class, 'index'])->name('ownder.index');
-
+Route::middleware(['auth', 'check-role-users:professor,employee'])->prefix('employee')->group(function () {
+    Route::get('/', [OwnerController::class, 'index'])->name('owner.index');
 });
 
-Route::middleware(['auth', 'check-role-users:student'])->prefix('student')->group(function(){
-
-    Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index'])->name('client.index');
-
+Route::middleware(['auth', 'check-role-users:student'])->prefix('student')->group(function () {
+    Route::get('/', [ClientController::class, 'index'])->name('client.index');
 });
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

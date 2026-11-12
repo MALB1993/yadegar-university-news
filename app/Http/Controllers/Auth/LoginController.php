@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,27 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Users sign in with their student/personnel number instead of an email.
+     */
+    public function username(): string
+    {
+        return 'identification_code';
+    }
+
+    /**
+     * Only active accounts are allowed to sign in.
+     *
+     * @return array<string, mixed>
+     */
+    protected function credentials(Request $request): array
+    {
+        return [
+            $this->username() => $request->input($this->username()),
+            'password' => $request->input('password'),
+            'status' => 'active',
+        ];
     }
 }

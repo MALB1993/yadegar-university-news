@@ -15,7 +15,7 @@
                             <label for="identification_code" class="col-md-4 col-form-label text-md-end">شماره دانشجویی/پرسونلی</label>
 
                             <div class="col-md-12">
-                                <input id="identification_code" type="string" class="form-control @error('identification_code') is-invalid @enderror" name="identification_code" value="{{ old('identification_code') }}" required autocomplete="identification_code" autofocus>
+                                <input id="identification_code" type="text" class="form-control @error('identification_code') is-invalid @enderror" name="identification_code" value="{{ old('identification_code') }}" required autocomplete="username" autofocus dir="ltr">
 
                                 @error('identification_code')
                                     <span class="invalid-feedback" role="alert">
@@ -63,14 +63,6 @@
                                     </a>
                                 @endif
                             </div>
-
-                            <input id="identification_code" type="text" class="form-control @error('identification_code') is-invalid @enderror" name="identification_code" value="{{ old('identification_code') }}" required autofocus>
-
-                            @error('identification_code')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
                     </form>
                 </div>
