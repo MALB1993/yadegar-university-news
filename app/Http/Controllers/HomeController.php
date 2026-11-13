@@ -3,29 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Show the dashboard for the signed in user.
      */
-    public function __construct()
+    public function index(Request $request): View
     {
-        $this->middleware('auth');
-    }
+        $user = $request->user();
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
         return view('home', [
-            'latestPosts' => Post::with(['user', 'category'])->latest()->take(5)->get(),
+            'latestPosts' => Post::query()
+                ->visibleTo($user)
+                ->with(['user', 'category'])
+                ->withCount('comments')
+                ->latest()
+                ->take(4)
+                ->get(),
+            'bookmarkCount' => $user->bookmarkedPosts()->count(),
+            'commentCount' => $user->comments()->count(),
         ]);
     }
 }

@@ -1,10 +1,104 @@
-// Application theme.
-// Bootstrap's precompiled RTL build is used, so the look is customised through
-// its CSS variables instead of Sass variables.
+// Application theme. Bootstrap's RTL build is loaded in app.scss, so the look is
+// customised through CSS variables and the classes below.
 :root {
     --bs-font-sans-serif: 'mikhak', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
     --bs-body-font-family: var(--bs-font-sans-serif);
-    --bs-body-font-size: 0.9rem;
-    --bs-body-line-height: 1.6;
-    --bs-body-bg: #f8fafc;
+    --bs-body-font-size: 0.95rem;
+    --bs-body-line-height: 1.8;
+    --bs-body-bg: #f4f6fb;
+    --dn-primary: #3b5bdb;
+    --dn-primary-2: #7048e8;
+}
+
+body {
+    background: var(--bs-body-bg);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--dn-primary) 0%, var(--dn-primary-2) 100%);
+    color: #fff;
+    border-radius: 1.25rem;
+
+    .lead {
+        color: rgba(255, 255, 255, 0.88);
+    }
+}
+
+.news-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.75rem 1.5rem rgba(33, 37, 41, 0.12) !important;
+    }
+}
+
+.news-cover {
+    min-height: 96px;
+    padding: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0.4rem;
+    color: #fff;
+}
+
+.cover-hero {
+    min-height: 180px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.cover-0 { background: linear-gradient(135deg, #3b5bdb, #7048e8); }
+.cover-1 { background: linear-gradient(135deg, #0ca678, #20c997); }
+.cover-2 { background: linear-gradient(135deg, #f76707, #fd7e14); }
+.cover-3 { background: linear-gradient(135deg, #d6336c, #f06595); }
+.cover-4 { background: linear-gradient(135deg, #1098ad, #15aabf); }
+
+.category-chip {
+    border-radius: 999px;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-inline-start: 4px solid var(--dn-primary);
+    padding-inline-start: 0.75rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+    background: #fff;
+    border: 2px dashed #dee2e6;
+    border-radius: 1rem;
+}
+
+.stat-card {
+    border-radius: 1rem;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+.avatar-initial {
+    background: #e7ecff;
+    color: var(--dn-primary);
+    font-weight: 700;
+}
+
+.prose {
+    font-size: 1.02rem;
+    line-height: 2.1;
+}
+
+.site-footer {
+    background: #fff;
+    border-top: 1px solid #e9ecef;
 }

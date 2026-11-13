@@ -8,6 +8,16 @@ use App\Models\User;
 class PostPolicy
 {
     /**
+     * Drafts and scheduled news are only visible to staff and to their author.
+     */
+    public function view(User $user, Post $post): bool
+    {
+        return $post->isLive()
+            || $user->isEmployee()
+            || (int) $post->user_id === (int) $user->id;
+    }
+
+    /**
      * Professors and employees can publish news.
      */
     public function create(User $user): bool

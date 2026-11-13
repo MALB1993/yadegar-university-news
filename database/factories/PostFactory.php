@@ -25,6 +25,19 @@ class PostFactory extends Factory
             'title' => fake()->sentence(6),
             'body' => fake()->paragraphs(3, true),
             'image' => null,
+            'status' => 'published',
+            'is_pinned' => false,
+            'views' => 0,
         ];
+    }
+
+    public function draft(): static
+    {
+        return $this->state(fn (array $attributes) => ['status' => 'draft']);
+    }
+
+    public function pinned(): static
+    {
+        return $this->state(fn (array $attributes) => ['is_pinned' => true]);
     }
 }

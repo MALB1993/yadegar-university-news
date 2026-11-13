@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -21,6 +22,20 @@ class CommentController extends Controller
             ->route('news.show', ['post' => $post->id])
             ->withFragment('comments')
             ->with('status', 'نظر شما ثبت شد.');
+    }
+
+    /**
+     * Like or unlike a comment on news the user is allowed to see.
+     */
+    public function like(Comment $comment, Request $request): RedirectResponse
+    {
+        $this->authorize('view', $comment->post);
+
+        $request->user()->likedComments()->toggle($comment->id);
+
+        return redirect()
+            ->route('news.show', $comment->post)
+            ->withFragment('comment-'.$comment->id);
     }
 
     public function destroy(Comment $comment): RedirectResponse
